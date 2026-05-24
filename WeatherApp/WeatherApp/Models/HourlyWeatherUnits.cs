@@ -39,5 +39,12 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("surface_pressure")]
         public string? SurfacePressure { get; set; }
+
+        [JsonPropertyName("uv_index")]
+        public string? UvIndex { get; set; }
+
+        [JsonPropertyName("dew_point_2m")]
+        public string? DewPoint { get; set; }
+
     }
 }

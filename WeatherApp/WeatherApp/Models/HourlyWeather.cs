@@ -38,6 +38,12 @@ namespace WeatherApp.Models
         [JsonPropertyName("surface_pressure")]
         public List<double> SurfacePressure { get; set; } = new();
 
+        [JsonPropertyName("uv_index")]
+        public List<double> UvIndex { get; set; } = new();
+
+        [JsonPropertyName("dew_point_2m")]
+        public List<double> DewPoint { get; set; } = new();
+
         public class HourlyTemperature
         {
             public string Time { get; set; } = "";
@@ -54,6 +60,8 @@ namespace WeatherApp.Models
             public double ApparentTemperature { get; set; }
             public double ApparentTemperatureF => (ApparentTemperature * 9 / 5) + 32;
             public double SurfacePressure { get; set; }
+            public double UvIndex { get; set; }
+            public double DewPoint { get; set; }
 
             public string GetHour()
             {

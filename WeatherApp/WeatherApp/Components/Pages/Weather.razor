@@ -7,6 +7,8 @@
 @inject AreaService AreaService
 @inject IJSRuntime JS
 
+<PageTitle>@_pageTitle</PageTitle>
+
 @if (_weather is null || _areas is null)
 {
     <div class="d-flex justify-content-center mt-5">
@@ -17,7 +19,7 @@ else
 {
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(-1); await LoadWeatherAsync();}">&#8592;</button>
@@ -25,7 +27,11 @@ else
                             <h2 class="mb-0">Sää - @_selectedAreaName</h2>
                             <small class="text-muted">@_selectedDate.ToString("D")</small>
                         </div>
-                        <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(1); await LoadWeatherAsync();}">&#8594;</button>
+                        <button class="btn btn-outline-dark btn-lg"
+                            disabled="@(_selectedDate >= DateTime.Today.AddDays(15))"
+                            @onclick="async () => {_selectedDate = _selectedDate.AddDays(1); await LoadWeatherAsync();}">
+                            &#8594;
+                        </button>
                     </div>
 
                     <div class="card-body">
@@ -49,7 +55,7 @@ else
                                     XValue="@(e => e.GetHour())"
                                     YValue="@(e => (decimal)e.Temperature)"/>
 
-                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
                                     Name=@($"Sademäärä {_weather.HourlyUnits.Rain}")
                                     SeriesType="SeriesType.Line"
@@ -127,53 +133,61 @@ else
                             </select>
                         </div>
 
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Lämpötila</strong></span>
+                        <div class="row g-2">
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Lämpötila</strong>
                                 @if (_displayCelsius)
                                 {
                                     <span>
                                         @CurrentOrFirstHour.Temperature @_weather.CurrentUnits.Temperature2m (Tuntuu kuin @CurrentOrFirstHour.ApparentTemperature @_weather.CurrentUnits.ApparentTemperature) 
-                                        <button class="btn btn-link btn-sm ms-2 p-0" @onclick="ToggleTemperatureDisplay">F</button>
+                                        <button class="btn btn-link btn-lg ms-2 p-0" @onclick="ToggleTemperatureDisplay">F</button>
                                     </span>
                                 }
                                 else
                                 {
                                     <span>
                                         @CurrentOrFirstHour.TemperatureF.ToString("F1") @_weather.CurrentUnits.Temperature2mF (Tuntuu kuin @CurrentOrFirstHour.ApparentTemperatureF.ToString("F1") @_weather.CurrentUnits.ApparentTemperatureF)
-                                        <button class="btn btn-link btn-sm ms-2 p-0" @onclick="ToggleTemperatureDisplay">C</button>
+                                        <button class="btn btn-link btn-lg ms-2 p-0" @onclick="ToggleTemperatureDisplay">C</button>
                                     </span>
                                 }
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Tuuli</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Tuuli</strong>
                                 <span>@CurrentOrFirstHour.WindSpeed @_weather.CurrentUnits.WindSpeed10m</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Tuulen puuska</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Tuulen puuska</strong>
                                 <span>@CurrentOrFirstHour.WindGusts @_weather.CurrentUnits.WindGusts</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Tuulen suunta</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Tuulen suunta</strong>
                                 <span>@CurrentOrFirstHour.GetWindDirection() (@CurrentOrFirstHour.WindDirection @_weather.CurrentUnits.WindDirection)</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Sade</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Sade</strong>
                                 <span>@CurrentOrFirstHour.Rain @_weather.CurrentUnits.Rain</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Kosteus</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Kosteus</strong>
                                 <span>@CurrentOrFirstHour.Humidity @_weather.CurrentUnits.RelativeHumidity2m</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Paine</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Paine</strong>
                                 <span>@CurrentOrFirstHour.Pressure @_weather.CurrentUnits.Pressure</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span><strong>Pintapaine</strong></span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Pintapaine</strong>
                                 <span>@CurrentOrFirstHour.SurfacePressure @_weather.CurrentUnits.SurfacePressure</span>
-                            </li>
-                        </ul>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>UV-säteily</strong>
+                                <span>@CurrentOrFirstHour.UvIndex @_weather.HourlyUnits.UvIndex</span>
+                            </div>
+                            <div class="col-6 border-bottom p-4 d-flex justify-content-between">
+                                <strong>Kastepiste</strong>
+                                <span>@CurrentOrFirstHour.DewPoint @_weather.HourlyUnits.DewPoint</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -192,9 +206,11 @@ else
     private List<HourlyWeather.HourlyTemperature>? _hourlyData;
     private string? _selectedAreaName;
     private string? _selectedView = "weather";
+    private string? _pageTitle = "Sää";
     private bool _displayCelsius = true;
     private bool _firstRender = true;
     private bool IsToday => _selectedDate.Date == DateTime.Today;
+    private bool _isInteractive;
     private DateTime _selectedDate = DateTime.Today;
 
     private HourlyWeather.HourlyTemperature CurrentOrFirstHour =>
@@ -241,7 +257,9 @@ else
                 Visibility = hourly.Visibility[i],
                 ApparentTemperature = hourly.ApparentTemperature[i],
                 SurfacePressure = hourly.SurfacePressure[i],
-                
+                UvIndex = hourly.UvIndex[i],
+                DewPoint = hourly.DewPoint[i],
+
             })
             .Take(24)
             .ToList();
@@ -252,6 +270,9 @@ else
         _areas = await AreaService.GetAreasAsync();
         _selectedAreaName = _areas.First().Name;
         _weather = await WeatherService.GetCurrentWeatherAsync(_areas.First().Latitude, _areas.First().Longitude, _selectedDate);
+        _pageTitle = $"Sää - {_selectedAreaName}";
+        if (_isInteractive)
+            await JS.InvokeVoidAsync("setTitle", $"Sää - {_selectedAreaName}");
         BuildHourData();
     }
 
@@ -259,18 +280,20 @@ else
     {
         if (!firstRender) return;
 
+        _isInteractive = true;
         _firstRender = false;
 
         try
         {
             var location = await JS.InvokeAsync<GeoLocation>("getLocation");
-            var closest = _areas.MinBy(a =>
+            var closest = _areas?.MinBy(a =>
             Math.Abs(a.Latitude - location.Latitude) +
             Math.Abs(a.Longitude - location.Longitude));
 
             if (closest is not null)
             {
                 _selectedAreaName = closest.Name;
+                StateHasChanged();
                 await LoadWeatherAsync();
             }
         }
@@ -301,6 +324,9 @@ else
 
         _weather = await WeatherService.GetCurrentWeatherAsync(selected.Latitude, selected.Longitude, _selectedDate);
         _hourlyData = null;
+        _pageTitle = $"Sää - {selected.Name}";
+        if (_isInteractive)
+            await JS.InvokeVoidAsync("setTitle", $"Sää - {selected.Name}");
         StateHasChanged();
         BuildHourData();
         StateHasChanged();

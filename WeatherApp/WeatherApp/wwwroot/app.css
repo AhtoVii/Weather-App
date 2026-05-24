@@ -58,3 +58,99 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+input[type="date"]:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.dark {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+body.dark .card {
+    background-color: #2d3238;
+    border-color: #444;
+}
+
+body.dark .card-header {
+    background-color: #343a40;
+    border-color: #444;
+}
+
+body.dark .list-group-item {
+    background-color: #2d3238;
+    border-color: #444;
+    color: #f8f9fa;
+}
+
+body.dark .form-select {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-color: #444;
+}
+
+body.dark strong {
+    color: #f8f9fa;
+}
+
+body.dark .text-muted {
+    color: #adb5bd !important;
+}
+
+body.dark .btn-outline-dark {
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+
+body.dark .btn-outline-dark:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.dark select option {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+body.dark * {
+    color: #f8f9fa;
+}
+
+body.dark .apexcharts-text,
+body.dark .apexcharts-xaxis-label,
+body.dark .apexcharts-yaxis-label,
+body.dark .apexcharts-legend-text,
+body.dark .apexcharts-title-text,
+body.dark .apexcharts-tooltip {
+    color: #f8f9fa !important;
+    fill: #f8f9fa !important;
+}
+
+body.dark .apexcharts-canvas {
+    background-color: transparent !important;
+}
+
+body.dark .apexcharts-tooltip {
+    background-color: #343a40 !important;
+    border-color: #444 !important;
+}
+
+body.dark .apexcharts-tooltip-title {
+    background-color: #2d3238 !important;
+    border-color: #444 !important;
+}
+
+body.dark a {
+    color: #6ea8fe !important;
+}
+
+body.dark .btn-link {
+    color: #6ea8fe !important;
+}

@@ -9,7 +9,7 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("temperature_2m")]
         public string? Temperature { get; set; }
-        public string? TemperatureF { get; set; }
+        public string? TemperatureF { get; set; } = "°F";
 
         [JsonPropertyName("rain")]
         public string? Rain { get; set; }
@@ -35,7 +35,7 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("apparent_temperature")]
         public string? ApparentTemperature { get; set; }
-        public string? ApparentTemperatureF { get; set; }
+        public string? ApparentTemperatureF { get; set; } = "°F";
 
         [JsonPropertyName("surface_pressure")]
         public string? SurfacePressure { get; set; }

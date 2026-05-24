@@ -1,0 +1,27 @@
+Simple to add
+
+Dark mode toggle — switch between light and dark theme
+Wind speed unit toggle — m/s, km/h, knots
+Sunrise/sunset times — Open-Meteo provides this in daily data
+Weather condition icon — Open-Meteo returns a WMO weather code which you already have, map it to an emoji or icon
+
+Medium complexity
+
+Daily forecast view — show a 7-day overview with min/max temperatures
+Favorite cities — save frequently viewed cities using browser local storage
+Share button — copy a URL with the selected city and date as query parameters so you can share a specific view
+Loading skeleton — instead of a spinner, show placeholder content while data loads
+
+More advanced
+
+PWA support — make the app installable on mobile devices
+Offline support — cache the last viewed weather data so it works without internet
+Map view — show a map with the selected municipality highlighted
+Comparison mode — compare weather between two cities side by side
+Weather alerts — highlight extreme values like very high UV or strong wind with color coding
+
+Data improvements
+
+Historical chart — show temperature trend over the past week rather than just one day
+Rain probability — add precipitation probability to the hourly chart
+Feels like chart — add apparent temperature as a separate series alongside actual temperature [X]

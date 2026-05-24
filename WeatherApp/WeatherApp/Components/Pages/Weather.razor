@@ -18,6 +18,11 @@
 else
 {
     <div class="container mt-4">
+        <div class="d-flex justify-content-end mb-2">
+            <button class="btn btn-outline-secondary btn-sm" @onclick="ToggleTheme">
+                @(_isDark ? "Light" : "Dark")
+            </button>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card shadow">
@@ -25,7 +30,12 @@ else
                         <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(-1); await LoadWeatherAsync();}">&#8592;</button>
                         <div class="text-center">
                             <h2 class="mb-0">Sää - @_selectedAreaName</h2>
-                            <small class="text-muted">@_selectedDate.ToString("D")</small>
+                            <input type="date"
+                                   class="form-control form-control-sm w-auto mx-auto mt-1 border-0 text-center bg-transparent"
+                                   value="@_selectedDate.ToString("yyyy-MM-dd")"
+                                   min="@DateTime.Today.AddDays(-365).ToString("yyyy-MM-dd")"
+                                   max="@DateTime.Today.AddDays(15).ToString("yyyy-MM-dd")"
+                                   @onchange="OnDateChanged" />
                         </div>
                         <button class="btn btn-outline-dark btn-lg"
                             disabled="@(_selectedDate >= DateTime.Today.AddDays(15))"
@@ -47,13 +57,24 @@ else
                         {
                             if (_selectedView == "weather")
                             {
-                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Lämpötila {_weather.HourlyUnits.Temperature}") Height="500" Options="_chartOptions">
-                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
-                                    Items="_hourlyData"
-                                    Name=@($"Lämpötila {_weather.HourlyUnits.Temperature}")
-                                    SeriesType="SeriesType.Line"
-                                    XValue="@(e => e.GetHour())"
-                                    YValue="@(e => (decimal)e.Temperature)"/>
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature"
+                                @key="_displayCelsius"
+                                Title="@($"Lämpötila {(_displayCelsius ? _weather.HourlyUnits.Temperature : _weather.HourlyUnits.TemperatureF)}")"
+                                    Height="500" Options="_chartOptions">
+
+                                <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                Items="_hourlyData"
+                                Name=@($"Lämpötila {(_displayCelsius ? _weather.HourlyUnits.Temperature : _weather.HourlyUnits.TemperatureF)}")
+                                SeriesType="SeriesType.Line"
+                                XValue="@(e => e.GetHour())"
+                                YValue="@(e => _displayCelsius ? (decimal)e.Temperature : (decimal)e.TemperatureF)"/>
+
+                                <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                Items="_hourlyData"
+                                Name=@($"Tuntuu kuin {(_displayCelsius ? _weather.HourlyUnits.ApparentTemperature : _weather.HourlyUnits.ApparentTemperatureF)}")
+                                SeriesType="SeriesType.Line"
+                                XValue="@(e => e.GetHour())"
+                                YValue="@(e => _displayCelsius ? (decimal)e.ApparentTemperature : (decimal)e.ApparentTemperatureF)"/>
 
                                 <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
@@ -211,6 +232,7 @@ else
     private bool _firstRender = true;
     private bool IsToday => _selectedDate.Date == DateTime.Today;
     private bool _isInteractive;
+    private bool _isDark;
     private DateTime _selectedDate = DateTime.Today;
 
     private HourlyWeather.HourlyTemperature CurrentOrFirstHour =>
@@ -285,6 +307,8 @@ else
 
         try
         {
+            _isDark = await JS.InvokeAsync<bool>("getTheme");
+            await JS.InvokeVoidAsync("setTheme", _isDark);
             var location = await JS.InvokeAsync<GeoLocation>("getLocation");
             var closest = _areas?.MinBy(a =>
             Math.Abs(a.Latitude - location.Latitude) +
@@ -332,8 +356,27 @@ else
         StateHasChanged();
     }
 
+    private async Task OnDateChanged(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString(), out var date))
+        {
+            _selectedDate = date;
+            await LoadWeatherAsync();
+        }
+    }
+
     private void ToggleTemperatureDisplay()
     {
         _displayCelsius ^= true;
+        _hourlyData = null;
+        StateHasChanged();
+        BuildHourData();
+        StateHasChanged();
+    }
+
+    private async Task ToggleTheme()
+    {
+        _isDark ^= true;
+        await JS.InvokeVoidAsync("setTheme", _isDark);
     }
 }

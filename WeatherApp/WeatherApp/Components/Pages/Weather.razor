@@ -1,0 +1,313 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using WeatherApp.Services
+@using Models
+@using ApexCharts
+@inject WeatherService WeatherService
+@inject AreaService AreaService
+@inject IJSRuntime JS
+
+@if (_weather is null || _areas is null)
+{
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border text-primary" role="status" />
+    </div>
+}
+else
+{
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(-1); await LoadWeatherAsync();}">&#8592;</button>
+                        <div class="text-center">
+                            <h2 class="mb-0">Sää - @_selectedAreaName</h2>
+                            <small class="text-muted">@_selectedDate.ToString("D")</small>
+                        </div>
+                        <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(1); await LoadWeatherAsync();}">&#8594;</button>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="btn-group w-100 mb-3" role="group">
+                            <button type="button" class="btn btn-primary @(_selectedView == "weather" ? "active" : "")" @onclick='() => _selectedView = "weather"'>Sää</button>
+                            <button type="button" class="btn btn-primary @(_selectedView == "wind" ? "active" : "")" @onclick='() => _selectedView = "wind"'>Tuuli</button>
+                            <button type="button" class="btn btn-primary @(_selectedView == "humidity" ? "active" : "")" @onclick='() => _selectedView = "humidity"'>Kosteus</button>
+                            <button type="button" class="btn btn-primary @(_selectedView == "pressure" ? "active" : "")" @onclick='() => _selectedView = "pressure"'>Paine</button>
+                            <button type="button" class="btn btn-primary @(_selectedView == "visibility" ? "active" : "")" @onclick='() => _selectedView = "visibility"'>Näkyvyys</button>
+                        </div>
+
+                        @if (_hourlyData is not null)
+                        {
+                            if (_selectedView == "weather")
+                            {
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Lämpötila {_weather.HourlyUnits.Temperature}") Height="500" Options="_chartOptions">
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Lämpötila {_weather.HourlyUnits.Temperature}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.Temperature)"/>
+
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Sademäärä {_weather.HourlyUnits.Rain}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.Rain)" />
+                                </ApexChart>
+                            }
+                            else if (_selectedView == "wind")
+                            {
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Tuuli {_weather.HourlyUnits.WindSpeed}") Height="500" Options="_chartOptions">
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Tuulen nopeus {_weather.HourlyUnits.WindSpeed}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.WindSpeed)"/>
+
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Tuulen puuska {_weather.HourlyUnits.WindGusts}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.WindGusts)" />
+
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Tuulen suunta {_weather.HourlyUnits.WindDirection}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.WindDirection)" />
+                                </ApexChart>
+                            }
+                            else if (_selectedView == "humidity")
+                            {
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Kosteus {_weather.HourlyUnits.Humidity}") Height="500" Options="_chartOptions">
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Kosteus {_weather.HourlyUnits.Humidity}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.Humidity)"/>
+                                </ApexChart>
+                            }
+                            else if (_selectedView == "pressure")
+                            {
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Paine {_weather.HourlyUnits.Humidity}") Height="500" Options="_chartOptions">
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Paine {_weather.HourlyUnits.Pressure}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.Pressure)"/>
+                                </ApexChart>
+                            }
+                            else if (_selectedView == "visibility")
+                            {
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Näkyvyys {_weather.HourlyUnits.VisibilityKm}") Height="500" Options="_chartOptions">
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Näkyvyys {_weather.HourlyUnits.VisibilityKm}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.VisibilityKm)"/>
+                                </ApexChart>
+                            }
+                        }
+
+                        <div class="mb-3">
+
+                            <select class="form-select" @onchange="OnAreaChanged">
+                                @foreach (var area in _areas!)
+                                {
+                                    <option value="@area.Name" selected="@(area.Name == _selectedAreaName)">@area.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Lämpötila</strong></span>
+                                @if (_displayCelsius)
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.Temperature @_weather.CurrentUnits.Temperature2m (Tuntuu kuin @CurrentOrFirstHour.ApparentTemperature @_weather.CurrentUnits.ApparentTemperature) 
+                                        <button class="btn btn-link btn-sm ms-2 p-0" @onclick="ToggleTemperatureDisplay">F</button>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.TemperatureF.ToString("F1") @_weather.CurrentUnits.Temperature2mF (Tuntuu kuin @CurrentOrFirstHour.ApparentTemperatureF.ToString("F1") @_weather.CurrentUnits.ApparentTemperatureF)
+                                        <button class="btn btn-link btn-sm ms-2 p-0" @onclick="ToggleTemperatureDisplay">C</button>
+                                    </span>
+                                }
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tuuli</strong></span>
+                                <span>@CurrentOrFirstHour.WindSpeed @_weather.CurrentUnits.WindSpeed10m</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tuulen puuska</strong></span>
+                                <span>@CurrentOrFirstHour.WindGusts @_weather.CurrentUnits.WindGusts</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tuulen suunta</strong></span>
+                                <span>@CurrentOrFirstHour.GetWindDirection() (@CurrentOrFirstHour.WindDirection @_weather.CurrentUnits.WindDirection)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Sade</strong></span>
+                                <span>@CurrentOrFirstHour.Rain @_weather.CurrentUnits.Rain</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Kosteus</strong></span>
+                                <span>@CurrentOrFirstHour.Humidity @_weather.CurrentUnits.RelativeHumidity2m</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Paine</strong></span>
+                                <span>@CurrentOrFirstHour.Pressure @_weather.CurrentUnits.Pressure</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Pintapaine</strong></span>
+                                <span>@CurrentOrFirstHour.SurfacePressure @_weather.CurrentUnits.SurfacePressure</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted mt-4 mb-3">
+        <small>Data: <a href="https://open-meteo.com" target="_blank">Open-Meteo</a></small>
+    </footer>
+}
+
+@code {
+    private WeatherReport? _weather;
+    private List<Area>? _areas;
+    private List<HourlyWeather.HourlyTemperature>? _hourlyData;
+    private string? _selectedAreaName;
+    private string? _selectedView = "weather";
+    private bool _displayCelsius = true;
+    private bool _firstRender = true;
+    private bool IsToday => _selectedDate.Date == DateTime.Today;
+    private DateTime _selectedDate = DateTime.Today;
+
+    private HourlyWeather.HourlyTemperature CurrentOrFirstHour =>
+    IsToday && _weather?.Current is not null
+        ? new HourlyWeather.HourlyTemperature
+        {
+            Temperature = _weather.Current.Temperature2m,
+            WindSpeed = _weather.Current.WindSpeed10m,
+            WindGusts = _weather.Current.WindGusts,
+            WindDirection = _weather.Current.WindDirection,
+            Rain = _weather.Current.Rain,
+            Humidity = _weather.Current.RelativeHumidity2m,
+            Pressure = _weather.Current.Pressure,
+            ApparentTemperature = _weather.Current.ApparentTemperature,
+            SurfacePressure = _weather.Current.SurfacePressure,
+        }
+        : _hourlyData?.First() ?? new();
+
+    private ApexChartOptions<HourlyWeather.HourlyTemperature> _chartOptions = new()
+    {
+        Chart = new Chart
+        {
+            Toolbar = new Toolbar
+            {
+                Show = false
+            }
+        }
+    };
+
+    private void BuildHourData()
+    {
+        var hourly = _weather!.Hourly!;
+        _hourlyData = hourly.Time!
+            .Select((t, i) => new HourlyWeather.HourlyTemperature
+            {
+                Time = t,
+                Temperature = hourly.Temperature![i],
+                Rain = hourly.Rain![i],
+                WindSpeed = hourly.WindSpeed![i],
+                WindDirection = hourly.WindDirection![i],
+                WindGusts = hourly.WindGusts![i],
+                Humidity = hourly.Humidity[i],
+                Pressure = hourly.Pressure[i],
+                Visibility = hourly.Visibility[i],
+                ApparentTemperature = hourly.ApparentTemperature[i],
+                SurfacePressure = hourly.SurfacePressure[i],
+                
+            })
+            .Take(24)
+            .ToList();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _areas = await AreaService.GetAreasAsync();
+        _selectedAreaName = _areas.First().Name;
+        _weather = await WeatherService.GetCurrentWeatherAsync(_areas.First().Latitude, _areas.First().Longitude, _selectedDate);
+        BuildHourData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        _firstRender = false;
+
+        try
+        {
+            var location = await JS.InvokeAsync<GeoLocation>("getLocation");
+            var closest = _areas.MinBy(a =>
+            Math.Abs(a.Latitude - location.Latitude) +
+            Math.Abs(a.Longitude - location.Longitude));
+
+            if (closest is not null)
+            {
+                _selectedAreaName = closest.Name;
+                await LoadWeatherAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+
+    private async Task OnAreaChanged(ChangeEventArgs e)
+    {
+        try
+        {
+            _selectedAreaName = e.Value?.ToString();
+            await LoadWeatherAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private async Task LoadWeatherAsync()
+    {
+        var selected = _areas?.FirstOrDefault(m => m.Name == _selectedAreaName);
+        if (selected is null) return;
+
+        _weather = await WeatherService.GetCurrentWeatherAsync(selected.Latitude, selected.Longitude, _selectedDate);
+        _hourlyData = null;
+        StateHasChanged();
+        BuildHourData();
+        StateHasChanged();
+    }
+
+    private void ToggleTemperatureDisplay()
+    {
+        _displayCelsius ^= true;
+    }
+}

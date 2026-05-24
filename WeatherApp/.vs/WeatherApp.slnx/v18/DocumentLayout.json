@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ahtov\\WeatherApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\hourlyweatherunits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\hourlyweatherunits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\geolocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\geolocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\services\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\services\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\hourlyweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\hourlyweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\currentweatherunits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\currentweatherunits.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\currentweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\currentweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\weatherreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\weatherreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\weatherapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\weatherapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\models\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\models\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|c:\\users\\ahtov\\weatherapp\\weatherapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54AD5067-2A56-FC78-083A-2309D2D8D907}|WeatherApp\\WeatherApp.csproj|solutionrelative:weatherapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Components\\App.razor",
+              "RelativeDocumentMoniker": "WeatherApp\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Components\\App.razor",
+              "RelativeToolTip": "WeatherApp\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-24T08:41:55.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GeoLocation.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\GeoLocation.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\GeoLocation.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\GeoLocation.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\GeoLocation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T08:36:58.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HourlyWeatherUnits.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\HourlyWeatherUnits.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\HourlyWeatherUnits.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\HourlyWeatherUnits.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\HourlyWeatherUnits.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T08:10:13.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "WeatherApp\\Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "WeatherApp\\Components\\Pages\\Weather.razor",
+              "ViewState": "AgIAALkAAAAAAAAAAAAUwM4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-23T18:06:53.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CurrentWeatherUnits.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\CurrentWeatherUnits.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\CurrentWeatherUnits.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\CurrentWeatherUnits.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\CurrentWeatherUnits.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T17:18:38.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherService.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Services\\WeatherService.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Services\\WeatherService.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Services\\WeatherService.cs",
+              "RelativeToolTip": "WeatherApp\\Services\\WeatherService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:20:10.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CurrentWeather.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\CurrentWeather.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\CurrentWeather.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\CurrentWeather.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\CurrentWeather.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:40:16.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeatherReport.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\WeatherReport.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\WeatherReport.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\WeatherReport.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\WeatherReport.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:20:39.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HourlyWeather.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\HourlyWeather.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\HourlyWeather.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\HourlyWeather.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\HourlyWeather.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T20:56:09.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Area.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\Area.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Models\\Area.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Models\\Area.cs",
+              "RelativeToolTip": "WeatherApp\\Models\\Area.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T18:30:43.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Program.cs",
+              "RelativeDocumentMoniker": "WeatherApp\\Program.cs",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\Program.cs",
+              "RelativeToolTip": "WeatherApp\\Program.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:29:34.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WeatherApp.csproj",
+              "DocumentMoniker": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\WeatherApp.csproj",
+              "RelativeDocumentMoniker": "WeatherApp\\WeatherApp.csproj",
+              "ToolTip": "C:\\Users\\ahtov\\WeatherApp\\WeatherApp\\WeatherApp.csproj",
+              "RelativeToolTip": "WeatherApp\\WeatherApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-23T16:20:15.88Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

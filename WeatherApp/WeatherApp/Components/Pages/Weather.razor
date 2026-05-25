@@ -86,20 +86,23 @@ else
                             }
                             else if (_selectedView == "wind")
                             {
-                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Tuuli {_weather.HourlyUnits.WindSpeed}") Height="500" Options="_chartOptions">
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" 
+                                @key="_displayMetric"
+                                Title="@($"Tuuli {(_displayMetric? _weather.HourlyUnits.WindSpeed : _weather.HourlyUnits.WindSpeedKm)}")"
+                                    Height="500" Options="_chartOptions">
                                     <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
-                                    Name=@($"Tuulen nopeus {_weather.HourlyUnits.WindSpeed}")
+                                    Name="@($"Tuulen nopeus {(_displayMetric? _weather.HourlyUnits.WindSpeed : _weather.HourlyUnits.WindSpeedKm)}")"
                                     SeriesType="SeriesType.Line"
                                     XValue="@(e => e.GetHour())"
-                                    YValue="@(e => (decimal)e.WindSpeed)"/>
+                                    YValue="@(e => _displayMetric ? (decimal)e.WindSpeed : (decimal)e.WindSpeedKm)" />
 
                                     <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
-                                    Name=@($"Tuulen puuska {_weather.HourlyUnits.WindGusts}")
+                                    Name="@($"Tuulen puuska {(_displayMetric? _weather.HourlyUnits.WindGusts : _weather.HourlyUnits.WindGustsKm)}")"
                                     SeriesType="SeriesType.Line"
                                     XValue="@(e => e.GetHour())"
-                                    YValue="@(e => (decimal)e.WindGusts)" />
+                                    YValue="@(e => _displayMetric ? (decimal)e.WindGusts : (decimal)e.WindGustsKm)" />
 
                                     <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
@@ -122,13 +125,20 @@ else
                             }
                             else if (_selectedView == "pressure")
                             {
-                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Paine {_weather.HourlyUnits.Humidity}") Height="500" Options="_chartOptions">
+                                <ApexChart TItem="HourlyWeather.HourlyTemperature" Title=@($"Paine {_weather.HourlyUnits.Pressure}") Height="500" Options="_chartOptions">
                                     <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
                                     Items="_hourlyData"
                                     Name=@($"Paine {_weather.HourlyUnits.Pressure}")
                                     SeriesType="SeriesType.Line"
                                     XValue="@(e => e.GetHour())"
                                     YValue="@(e => (decimal)e.Pressure)"/>
+
+                                    <ApexPointSeries TItem="HourlyWeather.HourlyTemperature"
+                                    Items="_hourlyData"
+                                    Name=@($"Pintapaine {_weather.HourlyUnits.SurfacePressure}")
+                                    SeriesType="SeriesType.Line"
+                                    XValue="@(e => e.GetHour())"
+                                    YValue="@(e => (decimal)e.SurfacePressure)"/>
                                 </ApexChart>
                             }
                             else if (_selectedView == "visibility")
@@ -174,11 +184,35 @@ else
                             </div>
                             <div class="col-6 border-bottom p-4 d-flex justify-content-between">
                                 <strong>Tuuli</strong>
-                                <span>@CurrentOrFirstHour.WindSpeed @_weather.CurrentUnits.WindSpeed10m</span>
+                                @if (_displayMetric)
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.WindSpeed @_weather.CurrentUnits.WindSpeed10m
+                                        <button class="btn btn-link btn-lg ms-2 p-0" @onclick="ToggleMetricDisplay">km/h</button>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.WindSpeedKm @_weather.CurrentUnits.WindSpeedKm
+                                        <button class="btn btn-link btn-lg ms-2 p-0" @onclick="ToggleMetricDisplay">m/s</button>
+                                    </span>
+                                }
                             </div>
                             <div class="col-6 border-bottom p-4 d-flex justify-content-between">
                                 <strong>Tuulen puuska</strong>
-                                <span>@CurrentOrFirstHour.WindGusts @_weather.CurrentUnits.WindGusts</span>
+                                @if (_displayMetric)
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.WindGusts @_weather.CurrentUnits.WindGusts
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @CurrentOrFirstHour.WindGustsKm @_weather.CurrentUnits.WindGustsKm
+                                    </span>
+                                }
                             </div>
                             <div class="col-6 border-bottom p-4 d-flex justify-content-between">
                                 <strong>Tuulen suunta</strong>
@@ -206,7 +240,15 @@ else
                             </div>
                             <div class="col-6 border-bottom p-4 d-flex justify-content-between">
                                 <strong>Kastepiste</strong>
-                                <span>@CurrentOrFirstHour.DewPoint @_weather.HourlyUnits.DewPoint</span>
+                                @if (_displayCelsius)
+                                {
+                                    <span>@CurrentOrFirstHour.DewPoint @_weather.HourlyUnits.DewPoint</span>
+                                }
+                                else
+                                {
+                                    <span>@CurrentOrFirstHour.DewPointF @_weather.HourlyUnits.DewPointF</span>
+
+                                }
                             </div>
                         </div>
                     </div>
@@ -229,6 +271,7 @@ else
     private string? _selectedView = "weather";
     private string? _pageTitle = "Sää";
     private bool _displayCelsius = true;
+    private bool _displayMetric;
     private bool _firstRender = true;
     private bool IsToday => _selectedDate.Date == DateTime.Today;
     private bool _isInteractive;
@@ -351,6 +394,7 @@ else
         _pageTitle = $"Sää - {selected.Name}";
         if (_isInteractive)
             await JS.InvokeVoidAsync("setTitle", $"Sää - {selected.Name}");
+
         StateHasChanged();
         BuildHourData();
         StateHasChanged();
@@ -368,6 +412,15 @@ else
     private void ToggleTemperatureDisplay()
     {
         _displayCelsius ^= true;
+        _hourlyData = null;
+        StateHasChanged();
+        BuildHourData();
+        StateHasChanged();
+    }
+
+    private void ToggleMetricDisplay()
+    {
+        _displayMetric ^= true;
         _hourlyData = null;
         StateHasChanged();
         BuildHourData();

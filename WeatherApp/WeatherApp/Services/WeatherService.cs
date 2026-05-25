@@ -20,6 +20,7 @@ namespace WeatherApp.Services
                       $"cloud_cover,pressure_msl,surface_pressure,wind_direction_10m,wind_gusts_10m,precipitation&wind_speed_unit=ms" +
                       $"&hourly=temperature_2m,rain,wind_speed_10m,wind_direction_10m,wind_gusts_10m,relative_humidity_2m,pressure_msl,visibility," +
                       $"apparent_temperature,surface_pressure,uv_index,dew_point_2m" +
+                      $"&daily=sunrise,sunset" +
                       $"&start_date={dateStr}&end_date={dateStr}";
 
             return await _client.GetFromJsonAsync<WeatherReport>(url);

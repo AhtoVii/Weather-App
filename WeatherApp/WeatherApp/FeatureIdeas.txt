@@ -1,7 +1,7 @@
 Simple to add
 
-Dark mode toggle — switch between light and dark theme
-Wind speed unit toggle — m/s, km/h, knots
+Dark mode toggle — switch between light and dark theme [x]
+Wind speed unit toggle — m/s, km/h, knots [x]
 Sunrise/sunset times — Open-Meteo provides this in daily data
 Weather condition icon — Open-Meteo returns a WMO weather code which you already have, map it to an emoji or icon
 

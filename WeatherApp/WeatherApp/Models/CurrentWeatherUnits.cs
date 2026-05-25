@@ -29,6 +29,7 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("wind_speed_10m")]
         public string? WindSpeed10m { get; set; }
+        public string? WindSpeedKm { get; set; } = "km/h";
 
         [JsonPropertyName("surface_pressure")]
         public string? SurfacePressure { get; set; }
@@ -38,6 +39,7 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("wind_gusts_10m")]
         public string? WindGusts { get; set; }
+        public string? WindGustsKm { get; set; } = "km/h";
 
         [JsonPropertyName("wind_direction_10m")]
         public string? WindDirection { get; set; }

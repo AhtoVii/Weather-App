@@ -51,8 +51,10 @@ namespace WeatherApp.Models
             public double TemperatureF => (Temperature * 9 / 5) + 32;
             public double Rain { get; set; }
             public double WindSpeed { get; set; }
+            public double WindSpeedKm => WindSpeed * 3.6;
             public double WindDirection { get; set; }
             public double WindGusts { get; set; }
+            public double WindGustsKm => WindGusts * 3.6;
             public double Humidity { get; set; }
             public double Pressure { get; set; }
             public double Visibility { get; set; }
@@ -62,6 +64,7 @@ namespace WeatherApp.Models
             public double SurfacePressure { get; set; }
             public double UvIndex { get; set; }
             public double DewPoint { get; set; }
+            public double DewPointF => (DewPoint * 9 / 5) + 32;
 
             public string GetHour()
             {

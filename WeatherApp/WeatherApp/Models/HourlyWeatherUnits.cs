@@ -16,12 +16,14 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("wind_speed_10m")]
         public string? WindSpeed { get; set; }
+        public string? WindSpeedKm { get; set; } = "km/h";
 
         [JsonPropertyName("wind_direction_10m")]
         public string? WindDirection { get; set; }
 
         [JsonPropertyName("wind_gusts_10m")]
         public string? WindGusts { get; set; }
+        public string? WindGustsKm { get; set; } = "km/h";
 
         [JsonPropertyName("relative_humidity_2m")]
         public string? Humidity { get; set; }
@@ -45,6 +47,7 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("dew_point_2m")]
         public string? DewPoint { get; set; }
+        public string? DewPointF { get; set; } = "°F";
 
     }
 }

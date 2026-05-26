@@ -16,6 +16,9 @@ namespace WeatherApp.Models
         [JsonPropertyName("hourly_units")]
         public HourlyWeatherUnits HourlyUnits { get; set; } = new();
 
+        [JsonPropertyName("daily")]
+        public DailyWeather Daily { get; set; } = new();
+
         [JsonPropertyName("latitude")]
         public double Latitude { get; set; }
 

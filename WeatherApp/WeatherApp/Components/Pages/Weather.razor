@@ -30,6 +30,7 @@ else
                         <button class="btn btn-outline-dark btn-lg" @onclick="async () => {_selectedDate = _selectedDate.AddDays(-1); await LoadWeatherAsync();}">&#8592;</button>
                         <div class="text-center">
                             <h2 class="mb-0">Sää - @_selectedAreaName</h2>
+                            <h3 class="mb-3">Auringonnousu @_weather.Daily.Sunrise - Auringonlasku @_weather.Daily.Sunset</h3>
                             <input type="date"
                                    class="form-control form-control-sm w-auto mx-auto mt-1 border-0 text-center bg-transparent"
                                    value="@_selectedDate.ToString("yyyy-MM-dd")"
